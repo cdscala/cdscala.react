@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/cdscala.react/static/css/main.120019ed.css",
-    "main.js": "/cdscala.react/static/js/main.90aff80a.js",
+    "main.js": "/cdscala.react/static/js/main.b70f5ab2.js",
     "static/media/icon-login.svg": "/cdscala.react/static/media/icon-login.21841e0996074379d61782b7801915d4.svg",
     "static/media/icon-empty-cart.svg": "/cdscala.react/static/media/icon-empty-cart.37bb704ab8d113f60f9a3fa600c56d97.svg",
     "static/media/icon-calculator.svg": "/cdscala.react/static/media/icon-calculator.0451679a75043ae2ee48a6ebae17ebbe.svg",
     "static/media/shop-logo.svg": "/cdscala.react/static/media/shop-logo.0da11d8210fd2a9398a21a44c4cc69d1.svg",
     "index.html": "/cdscala.react/index.html",
     "main.120019ed.css.map": "/cdscala.react/static/css/main.120019ed.css.map",
-    "main.90aff80a.js.map": "/cdscala.react/static/js/main.90aff80a.js.map"
+    "main.b70f5ab2.js.map": "/cdscala.react/static/js/main.b70f5ab2.js.map"
   },
   "entrypoints": [
     "static/css/main.120019ed.css",
-    "static/js/main.90aff80a.js"
+    "static/js/main.b70f5ab2.js"
   ]
 }
