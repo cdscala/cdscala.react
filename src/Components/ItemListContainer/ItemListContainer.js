@@ -35,12 +35,13 @@ const productos = [
 }
 ]
 function ItemListContainer(props) {
-  const { category } = useParams()
+  const { categoryId } = useParams()
+  console.log(categoryId)
   const [handleProducto,handleFavorito] = useOutletContext()
 
   return (
     <div className='item-list-wrapper' style={{backgroundColor: props.color?props.color:'beige'}}>
-      {category? category : 'no hay nada aqui'}
+      {categoryId? categoryId : 'no hay nada aqui'}
       <div className="item-list">
         {productos?.map((producto,key) => (
           <ItemList key={key} producto={producto} clickDetail = {() => handleProducto(producto)} clickFavorito = {(e) => handleFavorito(e,producto)}></ItemList>

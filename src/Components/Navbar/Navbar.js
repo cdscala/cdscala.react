@@ -22,11 +22,11 @@ export default function Navbar(props) {
         </div>
     </div>
     <ul className="cs-links-container">
-        <li className="cs-link-item"><Link to={``} className="cs-link">inicio</Link></li>
-        <li className="cs-link-item"><Link to={`category/mujer`} className="cs-link">mujer</Link></li>
-        <li className="cs-link-item"><Link to={`category/hombre`} className="cs-link">hombre</Link></li>
-        <li className="cs-link-item"><Link to={`category/niños`} className="cs-link">niños</Link></li>
-        <li className="cs-link-item"><Link to={`category/accesorios`} className="cs-link">accessorios</Link></li>
+        <li className="cs-link-item"><Link to={`/category`} className="cs-link">inicio</Link></li>
+        <li className="cs-link-item"><Link to={`/category/mujer`} className="cs-link">mujer</Link></li>
+        <li className="cs-link-item"><Link to={`/category/hombre`} className="cs-link">hombre</Link></li>
+        <li className="cs-link-item"><Link to={`/category/niños`} className="cs-link">niños</Link></li>
+        <li className="cs-link-item"><Link to={`/category/accesorios`} className="cs-link">accessorios</Link></li>
     </ul>
     </nav>
     
