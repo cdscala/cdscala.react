@@ -1,41 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
-import App, { loader as productLoader } from './App'
-import {
-  createHashRouter,
-  RouterProvider,
-} from "react-router-dom"
+import App from './App'
+import ContextWrapper from './Context/ContextWrapper'
 import ErrorPage from './Routes/Error/Error'
 import ItemListContainer, { loader as categoryLoader } from './Components/ItemListContainer/ItemListContainer'
 import ItemDetailContainer, { loader as itemLoader } from './Components/ItemDetailContainer/ItemDetailContainer'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-const router = createHashRouter([
-  {
-    path: "/",
-    element: <App />,
-    errorElement: <ErrorPage />,  
-    loader:productLoader,
-    children: [
-      {
-        index: true,
-        element: <ItemListContainer />,
-        loader: categoryLoader,
-      },
-      {
-        path: "category/:categoryId",
-        element: <ItemListContainer />,
-        loader: categoryLoader,
-      },
-      {
-        path: "item/:itemId",
-        element: <ItemDetailContainer />,
-        loader: itemLoader,
-      },
-    ],
-  },
-]);
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <RouterProvider router={router} />
+  <ContextWrapper>
+    <BrowserRouter>
+      <Routes>
+        <Route exact path="/" element={<App/>}>
+          <Route index path="" element={<ItemListContainer />}/>
+          <Route path="category/:categoryId" element={<ItemListContainer />}/>
+          <Route path="item/:itemId" element={<ItemDetailContainer/>}/>
+        </Route>
+      </Routes>
+    </BrowserRouter>
+  </ContextWrapper>
 );

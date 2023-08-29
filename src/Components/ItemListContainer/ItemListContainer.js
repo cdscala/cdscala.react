@@ -1,11 +1,7 @@
-import { useLoaderData, useOutletContext } from 'react-router-dom';
+import { useOutletContext, useParams } from 'react-router-dom';
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
 
-export async function loader({ params }) {
-  const category = params.categoryId
-  return { category }
-}
 const productos = [
   {
       id:1,
@@ -39,7 +35,7 @@ const productos = [
 }
 ]
 function ItemListContainer(props) {
-  const { category } = useLoaderData()
+  const { category } = useParams()
   const [handleProducto,handleFavorito] = useOutletContext()
 
   return (

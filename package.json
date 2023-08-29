@@ -1,7 +1,6 @@
 {
   "name": "cdscala.react",
   "version": "0.1.0",
-  "homepage": "https://cdscala.github.io/cdscala.react",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
