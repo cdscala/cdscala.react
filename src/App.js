@@ -8,16 +8,10 @@ import 'firebase/auth'
 
 import {useAuthState} from 'react-firebase-hooks/auth'
 
-export async function loader({ params }) {
-  // const products = await getProducts()
-  // return { products }
-  return null
-}
-
 function App() {
   const navigate = useNavigate()
   const handleProducto = (value)=>{
-    console.log(value)
+    // console.log(value)
     navigate('/item/'+value.id)
   }
   const handleFavorito = (e,value)=>{

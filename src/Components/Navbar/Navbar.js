@@ -4,12 +4,13 @@ import CalculatorIcon from '../svgs/icon-calculator.svg'
 import CartWidget from '../Cart/CartWidget'
 import LoginIcon from '../svgs/icon-login.svg'
 import { Link } from 'react-router-dom'
+import WishWidget from '../Wishlist/WishWidget'
 
 export default function Navbar(props) {
   return (
     <nav className='cs-navbar'>
       <div className="cs-nav">
-        <Link to={``}><img src={Logo} className="cs-brand-logo" alt=""/></Link>
+        <Link to={`/category`}><img src={Logo} className="cs-brand-logo" alt=""/></Link>
         <div className="cs-nav-items">
             <div className="cs-search">
                 <input type="text" className="cs-search-box" placeholder="buscar marca, producto"/>
@@ -17,8 +18,8 @@ export default function Navbar(props) {
             </div>
             <a href="#"><img src={LoginIcon} alt=""/></a>
             <a href="#"><CartWidget cantidad={3} /></a>
+            <a href="#"><WishWidget cantidad={3} /></a>
             
-            <div className="cs-div-button" id="cs-calculator"><img src={CalculatorIcon} alt=""/></div>
         </div>
     </div>
     <ul className="cs-links-container">

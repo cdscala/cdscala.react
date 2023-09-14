@@ -1,16 +1,15 @@
-import React from 'react'
+import React, { Fragment } from 'react'
 
-import CharactersProvider from './Pagination/CharactersContext'
+import CartProvider from './CartContext/CartContext'
 
 
 const ContextWrapper = ({ children }) => {
   return (
-    <>
-        <CharactersProvider>
+    <Fragment>
+        <CartProvider>
           {children}
-        </CharactersProvider>
-    </>
-    
+        </CartProvider>
+    </Fragment>
   );
 };
 
