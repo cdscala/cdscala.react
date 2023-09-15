@@ -4,23 +4,12 @@ import './index.css'
 import App from './App'
 import ContextWrapper from './Context/ContextWrapper'
 import ErrorPage from './Routes/Error/Error'
-import ItemListContainer, { loader as categoryLoader } from './Components/ItemListContainer/ItemListContainer'
-import ItemDetailContainer, { loader as itemLoader } from './Components/ItemDetailContainer/ItemDetailContainer'
+import ItemListContainer from './Components/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './Components/ItemDetailContainer/ItemDetailContainer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { initializeApp } from "firebase/app";
-
-
-const firebaseConfig = {
-  apiKey: "AIzaSyCap7Nab5ThA-GgOgvtP1jQa3AcrXy6aOc",
-  authDomain: "storeproject-1cd9a.firebaseapp.com",
-  projectId: "storeproject-1cd9a",
-  storageBucket: "storeproject-1cd9a.appspot.com",
-  messagingSenderId: "1048965355328",
-  appId: "1:1048965355328:web:e9fc0160fd0576c2678ca5"
-};
-
-const app = initializeApp(firebaseConfig);
-
+import Login from './Components/Login/Login'
+import Reset from './Components/Reset/Reset'
+import Register from './Components/Register/Register'
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <ContextWrapper>
@@ -30,6 +19,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
           <Route index path="category" element={<ItemListContainer />}/>
           <Route path="category/:categoryId" element={<ItemListContainer />}/>
           <Route path="item/:itemId" element={<ItemDetailContainer/>}/>
+          <Route path="login" element={<Login/>}/>
+          <Route path="reset" element={<Reset/>}/>
+          <Route path="register" element={<Register/>}/>
         </Route>
       </Routes>
     </BrowserRouter>

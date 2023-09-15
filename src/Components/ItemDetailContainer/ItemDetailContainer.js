@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import './ItemDetailContainer.css';
 import { Fragment, useEffect, useState } from 'react';
-import { doc, getDoc, getFirestore } from 'firebase/firestore';
+import { db } from "../../firebase";
+import { doc, getDoc } from 'firebase/firestore';
 import ItemDetail from '../ItemDetail/ItemDetail';
 
 export default function ItemDetailContainer(props) {
@@ -9,7 +10,6 @@ export default function ItemDetailContainer(props) {
     // console.log(itemId)
     const [itemSelected, setItem] = useState({})
     useEffect(()=>{
-        const db = getFirestore()
         const itemRef = doc(db, 'Items',itemId)
         
         getDoc(itemRef).then((snapshot) => {

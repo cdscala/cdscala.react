@@ -8,7 +8,7 @@ export default function WishWidget(props) {
     return (
         <Fragment>
             <img src={WishlistIcon} alt=""/>
-            <div className="cs-quantity-bubble">{props.cantidad?props.cantidad:0}</div>
+            <div className={props.cantidad==0?"cs-quantity-bubble hidden":"cs-quantity-bubble"}>{props.cantidad?props.cantidad:0}</div>
         </Fragment>
     );
 }

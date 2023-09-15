@@ -1,14 +1,139 @@
-import { Fragment, useEffect, useState } from 'react';
+import { Fragment, useContext, useEffect, useState } from 'react';
 import './ItemDetail.css';
+import { cartContext } from '../../Context/CartContext/CartContext';
+import { auth } from "../../firebase";
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { toast } from 'react-toastify';
+
 
 
 export default function ItemDetail(props) {
+    const { state, order, wishlist,deleteWishlist } = useContext(cartContext) 
     const [selectedPicture,setPicture] =useState('')
     const [active,setActive] = useState(0)
+    const [quantity,setQuantity] = useState(1)
+    const [user] = useAuthState(auth);
+    const handleButton = (value)=>{
+        if (value=='up'){
+            setQuantity((prev)=>prev+1)
+        }
+        else{
+            if (quantity>1){
+                setQuantity((prev)=>prev-1)
+            }
+        }
+    }
+    const handleOrder = () =>{
+        if (!user){
+            toast.error('Ingresa con tu usuario y contraseña', {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "light",
+            });
+        }
+        else{
+            const orden={userId: user.uid, cantidad:quantity,producto:props.item}
+            if (state.orders.find(e => e.producto.id === orden.producto.id)){
+                toast.error('El producto ya esta en el carro', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                  });
+            }
+            else{
+                order(orden)
+                toast.success('Tu produco ha sido añadido al carro! ', {
+                    position: "top-center",
+                    autoClose: 5000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
+            }
+        }
+    }
+    const handleFavoritoAdd = ()=>{
+        if (!user){
+          toast.error('Ingresa con tu usuario y contraseña', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+        else{
+            wishlist({userId:user.uid,producto:props.item})
+            toast.success('Tu producto ha sido añadido a la lista de deseos! ', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+          }
+    }
+    const handleFavoritoDelete = ()=>{
+        if (!user){
+          toast.error('Ingresa con tu usuario y contraseña', {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            });
+        }
+        else{
+            deleteWishlist({userId:user.uid,producto:props.item})
+            toast.success('Tu producto ha sido eliminado de la lista de deseos! ', {
+                position: "top-center",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+            });
+          }
+    } 
+
+    
     const handleActive = (key,picture) => {
         setActive(key)
         setPicture(`url(${picture})`)
     }
+    const [ison,setIs]= useState(false)
+    const isOnWishlist = (value) => {
+        return state.wishlist.find(e => e.producto.id === value)
+    };
+
+    useEffect(()=>{
+        setIs(isOnWishlist(props.item.id))
+    },[state.wishlist])
+
     useEffect(()=>{
         setPicture(`url(${props.item.thumbnail?props.item.thumbnail:''})`)
         setActive(0)
@@ -41,9 +166,18 @@ export default function ItemDetail(props) {
                     <label htmlFor="xl-size" className="cs-size-radio-btn">xl</label>
                     <input type="radio" name="size" value="xxl" hidden id="xxl-size" onChange={e => {}}/>
                     <label htmlFor="xxl-size" className="cs-size-radio-btn">xxl</label>
-            
-                    <button className="cs-btn cs-cart-btn">agregar al carro</button>
-                    <button className="cs-btn">agregar a deseados</button>
+                    <div className='cs-quantity-selector'>
+                        <button className='cs-btn-less' onClick={()=>handleButton('down')}>&#10094;</button>
+                        <div className='cs-quantity-selector-number'>{quantity}</div>
+                        <button className='cs-btn-more' onClick={()=>handleButton('up')}>&#10095;</button>
+                    </div>
+                    <button className="cs-btn cs-cart-btn" onClick={handleOrder}>agregar al carro</button>
+                    {ison?
+                        <button className="cs-btn" onClick={()=>handleFavoritoDelete()}>quitar de deseados</button>
+                        :
+                        <button className="cs-btn" onClick={()=>handleFavoritoAdd()}>agregar a deseados</button>
+                    }
+                    
                 </div>
             </div>
             <section className="cs-detail-des">

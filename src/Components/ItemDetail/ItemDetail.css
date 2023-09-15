@@ -95,6 +95,11 @@
     text-transform: uppercase;
     color: #383838;
     cursor: pointer;
+    transition: 0.5s;
+}
+.cs-size-radio-btn:hover{
+    background: #383838;
+    color: #fff;
 }
 
 .cs-size-radio-btn.check{
@@ -113,12 +118,52 @@
     cursor: pointer;
     margin: 20px 0;
     text-transform: capitalize;
+    transition: 0.5s;
+}
+.cs-btn:hover{
+    background-color: grey;
+    color:white;
+}
+.cs-quantity-selector{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.cs-quantity-selector button{
+    width: 40px;
+    padding: 20px;
+    border-radius: 5px;
+    background: none;
+    border: 1px solid #383838;
+    color: #383838;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 20px 0;
+    text-transform: capitalize;
+    transition: 0.5s;
+}
+.cs-quantity-selector button:hover{
+    background-color: #383838;
+    color:white;
+    
+}
+.cs-quantity-selector-number{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    width: 50px;
 }
 
 .cs-cart-btn{
     margin-right: 2%;
     background: #383838;
     color: #fff;
+    transition: 0.5s;
+}
+.cs-cart-btn:hover{
+    background: grey;
 }
 
 .cs-detail-des{

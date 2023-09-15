@@ -2,16 +2,17 @@ import { useOutletContext, useParams } from 'react-router-dom';
 import './ItemListContainer.css';
 import ItemList from '../ItemList/ItemList';
 import { useEffect, useState } from 'react';
-import { collection, doc, getDocs, getFirestore, query, setDoc, where } from 'firebase/firestore';
+import { db } from "../../firebase";
+import { collection, doc, getDocs, query, setDoc, where } from 'firebase/firestore';
 
 function ItemListContainer(props) {
   const { categoryId } = useParams()
+  
   // console.log(categoryId)
-  const [handleProducto,handleFavorito] = useOutletContext()
+  const [handleProducto,handleFavorito,handleEliminarFavorito] = useOutletContext()
   const [productosVista,setProductos] = useState([])
 
   useEffect(()=>{
-    const db = getFirestore()
     const itemsCollection = collection(db, 'Items')
     let q
     switch (categoryId) {
@@ -42,10 +43,10 @@ function ItemListContainer(props) {
   },[categoryId])
   return (
     <div className='item-list-wrapper' style={{backgroundColor: props.color?props.color:'beige'}}>
-      {categoryId? `Categoria: ${categoryId}` : null}
+      {/* {categoryId? `Categoria: ${categoryId}` : null} */}
       <div className="item-list">
         {productosVista?.map((producto,key) => (
-          <ItemList key={key} producto={producto} clickDetail = {() => handleProducto(producto)} clickFavorito = {(e) => handleFavorito(e,producto)}></ItemList>
+          <ItemList key={key} producto={producto} clickDetail = {() => handleProducto(producto)} clickFavorito = {(e) => handleFavorito(e,producto)} clickEliminarFavorito ={(e) => handleEliminarFavorito(e,producto)}></ItemList>
         ))}
       </div>
     </div>
