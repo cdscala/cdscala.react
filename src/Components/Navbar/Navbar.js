@@ -65,7 +65,7 @@ export default function Navbar(props) {
                 <button className="cs-search-btn">buscar</button>
             </div>
             {!user?
-            <a href="/login"><img src={LoginIcon} alt=""/></a>
+            <Link to={`/login`}><img src={LoginIcon} alt=""/></Link>
             :
             <a>
               <img className='cs-login-image' src={LoginIcon} alt="" onClick={handleShow}/>
